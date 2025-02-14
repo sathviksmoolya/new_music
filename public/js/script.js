@@ -94,14 +94,14 @@ const playmusic = (track, pause = false) => {
 async function displayAlbums() {
     try {
         // Fetch the list of album folders from the backend
-        const response = await fetch(`http://localhost:3000/albums`);
+        const response = await fetch(`/albums`);
         const folders = await response.json();
         const cardContainer = document.querySelector(".card-container");
         let cardsHTML = "";
 
         // Loop through folders to fetch metadata
         for (const folder of folders) {
-            const metadataResponse = await fetch(`http://localhost:3000/songs/${folder}/info.json`);
+            const metadataResponse = await fetch(`/songs/${folder}/info.json`);
             const metadata = await metadataResponse.json();
 
             // Add card HTML to the string
@@ -110,7 +110,7 @@ async function displayAlbums() {
                     <div class="playButton">
                         <img src="img/play.png" alt="">
                     </div>
-                    <img src="http://localhost:3000/songs/${folder}/cover.jpg" alt="${metadata.title}">
+                    <img src="/songs/${folder}/cover.jpg" alt="${metadata.title}">
                     <h3>${metadata.title}</h3>
                     <p>${metadata.description}</p>
                 </div>
